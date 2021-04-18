@@ -108,6 +108,23 @@ d3.json("samples.json").then((importedData) => {
         updatePlotlyBar(otu_ids_text.reverse(), sample_values.reverse(), otu_labels.reverse());
         updatePlotlyBubble(rows[0].otu_ids, rows[0].sample_values, rows[0].otu_labels);
 
+          //Demographic info - Metadata
+            metadata = importedData.metadata // the scope of variable 'metadata' is within this getData function only, outside of it this variable is not defined.
+            console.log("metadata")
+            console.log(metadata)
+            
+            var filtered_metadata = metadata.filter(filterMetaData);
+            console.log(filtered_metadata)
+            
+            //building logic for metadata html
+            d3.select("#id").html("<p> &nbsp &nbsp id:&nbsp"+filtered_metadata[0].id+"</p>");
+            d3.select("#ethnicity").html("<p> &nbsp &nbsp ethnicity:&nbsp"+filtered_metadata[0].ethnicity+"</p>");
+            d3.select("#gender").html("<p> &nbsp &nbsp gender:&nbsp"+filtered_metadata[0].gender+"</p>");
+            d3.select("#age").html("<p> &nbsp &nbsp age:&nbsp"+filtered_metadata[0].age+"</p>");
+            d3.select("#location").html("<p> &nbsp &nbsp location:&nbsp"+filtered_metadata[0].location+"</p>");
+            d3.select("#bbtype").html("<p> &nbsp &nbsp bbtype:&nbsp"+filtered_metadata[0].bbtype+"</p>");
+            d3.select("#wfreq").html("<p> &nbsp &nbsp wfreq:&nbsp"+filtered_metadata[0].wfreq+"</p>");
+
     }
 
 
