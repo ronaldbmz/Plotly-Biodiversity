@@ -48,8 +48,10 @@ d3.json("samples.json").then((importedData) => {
   console.log(otu_labels)
   
   updatePlotlyBar(otu_ids_text.reverse(), sample_values.reverse(), otu_labels.reverse());
+  updatePlotlyBubble(rows[0].otu_ids, rows[0].sample_values, rows[0].otu_labels);
 
 
+  //*********************************************The below code is when user selects any values through dropdown */
     // Call getData() when a change takes place to the DOM
     d3.selectAll("#selDataset").on("change", getData);
     
@@ -75,6 +77,7 @@ d3.json("samples.json").then((importedData) => {
         console.log(otu_labels)
         
         updatePlotlyBar(otu_ids_text.reverse(), sample_values.reverse(), otu_labels.reverse());
+        updatePlotlyBubble(rows[0].otu_ids, rows[0].sample_values, rows[0].otu_labels);
 
     }
 
@@ -108,7 +111,38 @@ function updatePlotlyBar(x, y, hover_text) {
     Plotly.newPlot("bar", Data, layout);
 }
 
+// Building bubble chart
+function updatePlotlyBubble(x, y, hover_text) {
+		
+    var trace = {
+          x: x,
+          y: y,
+          text: hover_text,
+          mode: 'markers',
+          marker: {
+            color: x,
+            colorscale: 'Earth',
+            size: y
+          }
+        };
 
+        var data = [trace];
+
+        var layout = {
+          showlegend: false,
+          xaxis: { title: "OTU IDs"},
+          margin: {
+                l: 20,
+                r: 20,
+                t: 20,
+                b: 20
+              },
+          height: 350,
+          width: 1000
+        };
+
+        Plotly.newPlot('bubble', data, layout);
+}
 
 })
 
