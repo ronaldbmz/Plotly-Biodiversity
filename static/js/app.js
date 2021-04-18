@@ -220,7 +220,7 @@ function updateGauge(level) {
 			x: [0], y:[0],
 			marker: {size: 18, color:'850000'},
 			showlegend: false,
-			name: 'scrubs per week',
+			name: 'scrubs/<br>week',
 			text: level,
 			hoverinfo: 'text+name'},
 		  { values: [50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50],
@@ -249,14 +249,15 @@ function updateGauge(level) {
 				color: '850000'
 			  },
 			}],
-		  autosize:true,
+          autosize:true,
+          hovermode:'closest',
 		  xaxis: {zeroline:false, showticklabels:false,
 					 showgrid: false, range: [-1, 1]},
 		  yaxis: {zeroline:false, showticklabels:false,
 					 showgrid: false, range: [-1, 1]},
 		   margin: {
-				l: 20,
-				r: 20,
+				l: 0,
+				r: 0,
 				t: 20,
 				b: 20
 			  },
