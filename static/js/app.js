@@ -190,5 +190,80 @@ function updatePlotlyBubble(x, y, hover_text) {
         Plotly.newPlot('bubble', data, layout);
 }
 
+function updateGauge(level) {
+
+	// Trig to calc meter point
+	function gaugePointer(value){
+		
+		var degrees = 180 - value,
+		 radius = .5;
+		var radians = degrees * Math.PI / 180;
+		var x = radius * Math.cos(radians);
+		var y = radius * Math.sin(radians);
+
+		// Path: may have to change to create a better triangle
+		var mainPath = 'M -.0 -0.035 L .0 0.035 L ',
+			 pathX = String(x),
+			 space = ' ',
+			 pathY = String(y),
+			 pathEnd = ' Z';
+		var path = mainPath.concat(pathX,space,pathY,pathEnd);
+			
+			return path;
+
+		}
+
+		var data = [{ type: 'scatter',
+			x: [0], y:[0],
+			marker: {size: 18, color:'850000'},
+			showlegend: false,
+			name: 'scrubs',
+			text: level,
+			hoverinfo: 'text+name'},
+		  { values: [50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50],
+		  rotation: 90,
+		  text: ['8-9', '7-8', '6-7', '5-6', '4-5', '3-4', '2-3', '1-2',  '0-1', ''],
+		  textinfo: 'text',
+		  textposition:'inside',	  
+		  marker: {colors:['rgba(128,181,134,255)', 'rgba(133,188,139,255)',
+								 'rgba(135,192,128,255)', 'rgba(183,205,139,255)',
+								 'rgba(213,229,149,255)', 'rgba(229,233,177,255)','rgba(233,231,201,255)','rgba(243,240,229,255)','rgba(247,242,236,255)',
+								 'rgba(255, 255, 255, 0)']
+								 },
+		  labels: ['8-9', '7-8', '6-7', '5-6', '4-5', '3-4', '2-3', '1-2',  '0-1', ''],
+		  hoverinfo: 'label',
+		  hole: .5,
+		  type: 'pie',
+		  showlegend: false
+		}];
+
+		var layout = {
+		  shapes:[{
+			  type: 'path',
+			  path: gaugePointer(level*20),
+			  fillcolor: '850000',
+			  line: {
+				color: '850000'
+			  },
+			}],
+		  autosize:true,
+		  xaxis: {zeroline:false, showticklabels:false,
+					 showgrid: false, range: [-1, 1]},
+		  yaxis: {zeroline:false, showticklabels:false,
+					 showgrid: false, range: [-1, 1]},
+		   margin: {
+				l: 20,
+				r: 20,
+				t: 20,
+				b: 20
+			  },
+		  width: 500,
+		  height: 400
+		};
+
+		Plotly.newPlot('gauge', data, layout);
+	}
+
+
 })
 
