@@ -55,16 +55,26 @@ d3.json("samples.json").then((importedData) => {
     
     // Function called by DOM changes
     function getData() {
-        // Initialize an empty array for the country's data
+        // filter the data for the selected subject id
         rows = samples.filter(filterData);
         console.log(rows)
 
+        //getting required values for building bar chart
         var otu_ids = rows[0].otu_ids.slice(0, 10);
         console.log(otu_ids)
         var sample_values = rows[0].sample_values.slice(0, 10);
         console.log(sample_values)
         var otu_labels = rows[0].otu_labels.slice(0, 10);
-    
+
+        var otu_ids_text = [];
+        for (var i = 0; i < otu_ids.length; i++) {
+          temp = 'OTU ' + otu_ids[i].toString()
+          otu_ids_text.push(temp)
+          }
+        console.log(otu_ids_text)
+        console.log(otu_labels)
+        
+        updatePlotlyBar(otu_ids_text.reverse(), sample_values.reverse(), otu_labels.reverse());
 
     }
 
