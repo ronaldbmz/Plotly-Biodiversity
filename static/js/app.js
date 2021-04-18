@@ -79,6 +79,9 @@ d3.json("samples.json").then((importedData) => {
   d3.select("#bbtype").html("<p> &nbsp &nbsp bbtype:&nbsp"+filtered_metadata[0].bbtype+"</p>");
   d3.select("#wfreq").html("<p> &nbsp &nbsp wfreq:&nbsp"+filtered_metadata[0].wfreq+"</p>");
 
+  //calling Guage chart function
+  updateGauge(parseInt(filtered_metadata[0].wfreq));
+
 
   //*********************************************The below code is when user selects any values through dropdown */
     // Call getData() when a change takes place to the DOM
@@ -217,7 +220,7 @@ function updateGauge(level) {
 			x: [0], y:[0],
 			marker: {size: 18, color:'850000'},
 			showlegend: false,
-			name: 'scrubs',
+			name: 'scrubs per week',
 			text: level,
 			hoverinfo: 'text+name'},
 		  { values: [50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50],
