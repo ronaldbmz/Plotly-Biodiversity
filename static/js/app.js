@@ -25,7 +25,8 @@ d3.json("samples.json").then((importedData) => {
 	
 	  return data.id === subject_id;
 	}
-    
+  
+    //*******************************The below code is to show the charts without interacting with dropdown*************/
   samples = importedData.samples
   console.log("samples")
   console.log(samples)
