@@ -128,6 +128,10 @@ d3.json("samples.json").then((importedData) => {
             d3.select("#bbtype").html("<p> &nbsp &nbsp bbtype:&nbsp"+filtered_metadata[0].bbtype+"</p>");
             d3.select("#wfreq").html("<p> &nbsp &nbsp wfreq:&nbsp"+filtered_metadata[0].wfreq+"</p>");
 
+        //calling Guage chart function
+        updateGauge(parseInt(filtered_metadata[0].wfreq));
+
+
     }
 
 
