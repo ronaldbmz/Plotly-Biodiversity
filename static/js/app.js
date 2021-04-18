@@ -243,7 +243,7 @@ function updateGauge(level) {
 		var layout = {
 		  shapes:[{
 			  type: 'path',
-			  path: gaugePointer(level*20),
+			  path: gaugePointer(level*20), //multiplying with 20 as each segment is of 20 degree and there are 9 segments i.e. 180/9 = 20 degree.
 			  fillcolor: '850000',
 			  line: {
 				color: '850000'
